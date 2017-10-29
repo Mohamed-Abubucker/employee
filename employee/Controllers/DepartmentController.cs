@@ -7,31 +7,36 @@ using System.Web.Http;
 
 namespace employee.Controllers
 {
-    public class ValuesController : ApiController
+    public class DepartmentController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        EMPLOYEEEntities empdb;
+        public DepartmentController()
         {
-            return new string[] { "value1", "value2" };
+            empdb = new EMPLOYEEEntities();
+        }
+        // GET: api/Department
+        public IEnumerable<departments_master> Get()
+        {
+            return empdb.departments_master.ToList();
         }
 
-        // GET api/values/5
+        // GET: api/Department/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        // POST: api/Department
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT: api/Department/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE: api/Department/5
         public void Delete(int id)
         {
         }
