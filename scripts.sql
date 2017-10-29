@@ -44,8 +44,6 @@ BEGIN
 	BEGIN TRANSACTION
 		insert into [dbo].[employee]([NAME],[DOJ],[MOBILE],[EMAIL],[SALARY],DESIGN,DEPT) values(@name,@doj,@mobile,@email,@salary,@design,@dept)
 	COMMIT TRANSACTION
-END
-
 
 
 
@@ -66,3 +64,17 @@ insert into [dbo].[designations_master]([DESGIN_ID],[DESIGNATION],[DESCRIPTION])
 select * from employee
 select * from designations_master
 select * from departments_master
+
+
+DROP TABLE [dbo].[employee]
+
+CREATE TABLE [dbo].[employee](
+[ID] int IDENTITY(1,1) PRIMARY KEY,
+[NAME] nvarchar(50),
+[DOJ] datetime,
+[MOBILE] varchar(10),
+[EMAIL] varchar(30),
+[SALARY] money,
+DESIGN int FOREIGN KEY REFERENCES [designations_master]([DESGIN_ID]), 
+DEPT int FOREIGN KEY REFERENCES [departments_master]([DEPT_CODE]) 
+)
